@@ -19,9 +19,7 @@ WORKDIR /code
 ADD . /code/
 RUN wget https://raw.githubusercontent.com/18F/18f-django-project-template/master/Pipfile -O /code/Pipfile
 
-# Generate requirements.txt from Pipfile
-RUN pipenv lock -r >requirements.txt
-RUN pip install -r requirements.txt
+RUN pipenv install --system --skip-lock
 
 
 RUN django-admin.py startproject --template=https://github.com/18F/18f-django-project-template/archive/master.zip starter_project
