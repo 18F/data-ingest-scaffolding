@@ -12,27 +12,14 @@ ENV PYTHONPATH=/usr/local/bin
 # Install pipenv and get pipfile
 RUN pip install --upgrade pip
 RUN pip install pipenv
-RUN wget https://raw.githubusercontent.com/18F/18f-django-project-template/master/Pipfile
 
 # Move into a container directory
 RUN mkdir /code
 WORKDIR /code
 ADD . /code/
+RUN wget https://raw.githubusercontent.com/18F/18f-django-project-template/master/Pipfile -O /code/Pipfile
+
+RUN pipenv install --system --skip-lock
 
 
-#RUN pipenv install --dev --deploy
-
-#RUN pip install django
-
-#RUN django-admin.py startproject composeexample .
-
-#RUN django-admin.py startproject --template=https://github.com/18F/18f-django-project-template/archive/master.zip starter_project
-
-
-
-#RUN cd /code
-run ls
-
-#RUN django-admin.py startproject composeexample .
-
-
+RUN django-admin.py startproject --template=https://github.com/18F/18f-django-project-template/archive/master.zip starter_project
