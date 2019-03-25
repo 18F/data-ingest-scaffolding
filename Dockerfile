@@ -17,9 +17,11 @@ RUN pip install pipenv
 RUN mkdir /code
 WORKDIR /code
 ADD . /code/
+
+# Go get our standard Django project pipfile
 RUN wget https://raw.githubusercontent.com/18F/18f-django-project-template/master/Pipfile -O /code/Pipfile
 
 RUN pipenv install --system --skip-lock
 
-
-RUN django-admin.py startproject --template=https://github.com/18F/18f-django-project-template/archive/master.zip starter_project
+# If we don't see starter_project, run the startproject command to create it.
+RUN [ ! -d starter_project ] && django-admin.py startproject --template=https://github.com/18F/18f-django-project-template/archive/master.zip starter_project
