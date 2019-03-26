@@ -5,9 +5,9 @@ services:
   #  image: postgres
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: bash -c "pwd && ls && cd starter_project4 && pwd && ls && python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/code/starter_project
+      - .:/django_projects
     ports:
       - "8000:8000"
     #depends_on:

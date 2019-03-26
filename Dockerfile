@@ -14,14 +14,16 @@ RUN pip install --upgrade pip
 RUN pip install pipenv
 
 # Move into a container directory
-RUN mkdir /code
-WORKDIR /code
-ADD . /code/
+RUN mkdir /django_projects
+WORKDIR /django_projects
+ADD . /django_projects/
 
 # Go get our standard Django project pipfile
-RUN wget https://raw.githubusercontent.com/18F/18f-django-project-template/master/Pipfile -O /code/Pipfile
+RUN wget https://raw.githubusercontent.com/18F/18f-django-project-template/master/Pipfile
 
-RUN pipenv install --system --skip-lock
+RUN pipenv install --system --skip-lock --dev
 
 # If we don't see starter_project, run the startproject command to create it.
-RUN [ ! -d starter_project ] && django-admin.py startproject --template=https://github.com/18F/18f-django-project-template/archive/master.zip starter_project
+#RUN django-admin.py startproject --template=https://github.com/18F/18f-django-project-template/archive/master.zip starter_project4
+
+RUN echo """If this is your first time building, you'll want to run `docker-compose run web django-admin.py startproject --template=https://github.com/18F/18f-django-project-template/archive/master.zip starter_project`"""
