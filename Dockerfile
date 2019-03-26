@@ -6,7 +6,7 @@ FROM python:3.6
 # is set straight to the terminal without buffering it first.
 ENV PYTHONUNBUFFERED 1
 
-# Create and moove into a container directory.
+# Create and move into a container directory.
 RUN mkdir /code
 WORKDIR /code
 
