@@ -8,9 +8,13 @@ Either fork the repo and then `cd` into the repo directory or, alternately, just
 
 ### 2. Build the images
 ```
-docker-compose build
+docker-compose build --build-arg NAME=projectname
 ```
-This will install Django and other standard dependencies for a new 18F project, based on our 18f Django project template Pipfile and will create a new django project. See the `18f-django-project-template` repo for more details about the standard project template.
+This will install Django and other standard dependencies for a new 18F project, based on our 18f Django project template Pipfile and will create a new django project.
+
+You can name your project whatever you like by passing the `NAME` argument. If you omit the argument altogether and just run `docker-compose build` the default project name is `myproject`.
+
+See the `18f-django-project-template` repo for more details about the standard project template and what it contains.
 
 ### 3. Bring up your app
 ```

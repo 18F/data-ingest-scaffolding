@@ -2,6 +2,9 @@
 # We use an official Python runtime as a parent image
 FROM python:3.6
 
+# We're taking a NAME argument, so this is just a default
+ARG NAME=myproject
+
 # The enviroment variable ensures that the python output 
 # is set straight to the terminal without buffering it first.
 ENV PYTHONUNBUFFERED 1
@@ -34,10 +37,10 @@ RUN npm install --save uswds
 
 # Now let's attempt to create a new django project
 # From our standard project template
-RUN django-admin startproject --template=https://github.com/18F/18f-django-project-template/archive/master.zip project4
+RUN django-admin startproject --template=https://github.com/18F/18f-django-project-template/archive/master.zip ${NAME}
 
 # Your /code working directory should now contain:
 # Pipfile  node_modules  package-lock.json  project2
 
 # MOVE into your new project
-WORKDIR project4
+WORKDIR ${NAME}
